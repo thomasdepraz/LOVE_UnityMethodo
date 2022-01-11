@@ -8,8 +8,8 @@ public class MenuManager : MonoBehaviour
 
     public void Play()
     {
-        Debug.Log("load level");
-        //SceneManager.LoadScene("Level");
+        //Debug.Log("load level");
+        SceneManager.LoadScene("MainScene");
     }
 
     public void Quit()
