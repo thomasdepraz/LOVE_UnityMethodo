@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 1045133206}
   - component: {fileID: 1045133207}
   - component: {fileID: 1045133209}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,9 +320,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayDistance: 0.1
   accuracy: 3
-  skinWidth: 0.02
+  skinWidth: 0.05
   self: {fileID: 1045133206}
   selfBox: {fileID: 1515426798}
+  mask:
+    serializedVersion: 2
+    m_Bits: 55
 --- !u!1 &1515426796
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1515426797}
   - component: {fileID: 1515426798}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1567712140}
   - component: {fileID: 1567712141}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -33,13 +33,14 @@ namespace Player
 
         public void Start()
         {
-            currentPlayerState = PlayerState.ON_GROUND;
+            currentPlayerState = PlayerState.FALLING;
         }
 
         public void Update()
         {
             HorizontalMovement();
             VerticalMovement();
+            raycaster.ThrowRays(RayDirection.Down);
         }
 
         public void ApplyGravity()
@@ -75,7 +76,6 @@ namespace Player
                 {
                     fallingDuration = 0;
                     currentPlayerState = PlayerState.FALLING;
-                    print("falling");
                 }
             }
 
@@ -100,8 +100,7 @@ namespace Player
                 //If collision ground change playerstate
                 if(raycaster.ThrowRays(RayDirection.Down))
                 {
-                    currentPlayerState = PlayerState.ON_GROUND;
-                    print("ONground");
+                    currentPlayerState = PlayerState.ON_GROUND; 
                 }
             }
         }

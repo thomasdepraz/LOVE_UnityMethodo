@@ -25,6 +25,7 @@ namespace Player
         public BoxCollider2D selfBox;
 
         List<Vector2> origins = new List<Vector2>();
+        public LayerMask mask;
         public bool ThrowRays(RayDirection rayDir)
         {
             origins.Clear();
@@ -105,7 +106,7 @@ namespace Player
             //Throw rays
             for (int i = 0; i < origins.Count; i++)
             {
-                if (Physics2D.Raycast(origins[i], rayDirection, rayDistance))
+                if (Physics2D.Raycast(origins[i], rayDirection, rayDistance, mask))
                 {
                     Debug.DrawRay(origins[i], rayDirection * rayDistance, Color.green);
                     return true;
