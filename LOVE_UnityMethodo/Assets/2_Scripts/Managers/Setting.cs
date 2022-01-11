@@ -4,5 +4,6 @@ using UnityEngine;
 
 public static class Setting
 {
-    public static float gravityForce = 3;
+    public static float gravityForce = 6;
+    public static float voidHeight = -5;
 }

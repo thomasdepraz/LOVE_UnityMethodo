@@ -33,15 +33,23 @@ namespace Player
 
         public void Start()
         {
-            currentPlayerState = PlayerState.FALLING;
+            currentPlayerState = PlayerState.ON_GROUND;
         }
 
         public void Update()
         {
             HorizontalMovement();
             VerticalMovement();
-            raycaster.ThrowRays(RayDirection.Down);
-        }
+            if (currentPlayerState == PlayerState.ON_GROUND)
+                CheckFalling();
+
+            if(currentPlayerState == PlayerState.FALLING)
+            {
+                //Check void death
+                if (self.transform.position.y <= Setting.voidHeight)
+                    Respawn();
+            }
+        }   
 
         public void ApplyGravity()
         {
@@ -105,14 +113,24 @@ namespace Player
             }
         }
 
+        public void CheckFalling()
+        {
+            if (!raycaster.ThrowRays(RayDirection.Down))
+                currentPlayerState = PlayerState.FALLING;
+        }
+
         public void Spawn()
         {
-
+            gameObject.SetActive(true);
+            self.position = GameManager.Instance.currentLevel.playerStart.localPosition;
+            currentPlayerState = PlayerState.FALLING;
         }
 
         public void Respawn()
         {
+            self.position = GameManager.Instance.currentLevel.playerStart.localPosition;
 
+            //lower life points if == 0 then loose
         }
 
 
