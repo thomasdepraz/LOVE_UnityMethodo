@@ -4,18 +4,33 @@ using UnityEngine;
 
 public class DangerousCollider : MonoBehaviour
 {
+    [SerializeField] bool isProjectile = false;
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    SpriteRenderer rend;
+    private void Start()
     {
-        if(collision.tag == "Checkpoint")
+        rend = GetComponent<SpriteRenderer>();
+    }
+
+
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if(rend.enabled)
         {
-            GameManager.Instance.player.currentCheckpoint.DestroyCheckPoint();
-            Debug.Log("hit checkpoint");
-        }
-        else if(collision.tag == "Player")
-        {
-            GameManager.Instance.player.Respawn();
-            Debug.Log("hit player");
+            if(collision.tag == "Checkpoint")
+            {
+                GameManager.Instance.player.currentCheckpoint.DestroyCheckPoint();
+                Debug.Log("hit checkpoint");
+            }
+            else if(collision.tag == "Player")
+            {
+                GameManager.Instance.player.Respawn();
+                Debug.Log("hit player");
+            }
+            else if(isProjectile)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 

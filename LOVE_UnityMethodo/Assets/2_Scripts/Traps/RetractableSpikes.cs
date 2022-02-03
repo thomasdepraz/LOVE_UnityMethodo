@@ -11,14 +11,12 @@ public class RetractableSpikes : MonoBehaviour
     SpikeState currentState = SpikeState.OUT;
     Coroutine spikeRoutine;
 
-    public GameObject visuals;
-
+    public SpriteRenderer visuals;
 
     private void OnBecameVisible()
     {
         spikeRoutine = StartCoroutine(SpikeRoutine());
     }
-
 
     private void OnBecameInvisible()
     {
@@ -55,13 +53,13 @@ public class RetractableSpikes : MonoBehaviour
     {
         if(isIn)//Deploy
         {
-            visuals.SetActive(true);
+            visuals.enabled = true;
             currentState = SpikeState.OUT;
             onComplete?.Invoke();
         }
         else//Retract
         {
-            visuals.SetActive(false);
+            visuals.enabled = false;
             currentState = SpikeState.IN;
             onComplete?.Invoke();
         }
