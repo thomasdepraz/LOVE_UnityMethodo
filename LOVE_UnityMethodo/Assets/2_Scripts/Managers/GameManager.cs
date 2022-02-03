@@ -8,7 +8,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameObject PauseMenu;
+    public GameObject OptionMenu;
     private bool isPaused = false;
+
+    //SOUND
+    public float volume = 100;
 
     public void Awake()
     {
@@ -69,12 +73,19 @@ public class GameManager : MonoBehaviour
     {
         isPaused = true;
         PauseMenu.SetActive(true);
+        OptionMenu.SetActive(false);
     }
 
     public void UnPause()
     {
         isPaused = false;
         PauseMenu.SetActive(false);
+        OptionMenu.SetActive(false);
+    }
+
+    public void Option()
+    {
+        OptionMenu.SetActive(true);
     }
 
 

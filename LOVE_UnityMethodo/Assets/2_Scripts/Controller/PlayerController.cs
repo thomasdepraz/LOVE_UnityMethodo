@@ -35,9 +35,15 @@ namespace Player
         public CheckpointBehaviour checkpointBehaviour;
 
 
+        [Header("Animation")]
+        public Animator playerAnimator;
+        public SpriteRenderer sr;
+
         public void Start()
         {
             currentPlayerState = PlayerState.ON_GROUND;
+            playerAnimator = GetComponent<Animator>();
+            sr = GetComponent<SpriteRenderer>();
         }
 
         public void Update()
@@ -67,12 +73,30 @@ namespace Player
         public void HorizontalMovement()
         {
             inputDirection = Input.GetAxisRaw("Horizontal");
-            if (inputDirection > 0) horizontalHit = raycaster.ThrowRays(RayDirection.Right);
-            else if (inputDirection < 0) horizontalHit = raycaster.ThrowRays(RayDirection.Left);
+            if (inputDirection > 0)
+            {
+                horizontalHit = raycaster.ThrowRays(RayDirection.Right);
+                sr.flipX = true;
+            }
+            else if (inputDirection < 0)
+            {
+                horizontalHit = raycaster.ThrowRays(RayDirection.Left);
+                sr.flipX = false;
+            }
             else horizontalHit = false;
 
             if(!horizontalHit)
+            {
                 self.position += Vector3.right * inputDirection * speed * Time.deltaTime;
+                //anim walk
+                playerAnimator.SetBool("isWalking", true);
+            }
+            else
+            {
+                //anim idle
+                playerAnimator.SetBool("isWalking", false);
+            }
+                
         }
 
         public void VerticalMovement()
