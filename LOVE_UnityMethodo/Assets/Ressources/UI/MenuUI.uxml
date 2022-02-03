@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="MenuUSS.uss" />
+    <ui:VisualElement style="align-items: center; justify-content: center; position: absolute; left: 0; top: 0; bottom: 0; right: 0;">
+        <ui:IMGUIContainer focusable="false" style="background-image: url(&apos;/Assets/Sprites/UI/Title 1.png#Title 1&apos;); justify-content: flex-start; align-items: center; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-top: 57px; padding-left: 265px; padding-right: 82px; padding-bottom: 93px;" />
+        <ui:GroupBox style="height: 40%; margin-top: -2px; background-image: url(&apos;/Assets/Sprites/UI/MenuBorder.png#MenuBorder&apos;); border-left-width: 28px; border-right-width: 28px; border-top-width: 28px; border-bottom-width: 28px; margin-left: 158px; margin-right: 158px; margin-bottom: 69px; opacity: 1; width: 30%;">
+            <ui:Button display-tooltip-when-elided="true" name="Start" style="margin-bottom: 10px; width: auto; max-width: none; opacity: 1; -unity-background-scale-mode: stretch-to-fill; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); margin-top: 10px;" />
+            <ui:Button display-tooltip-when-elided="true" name="Quit" style="margin-bottom: 10px; bottom: 0; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); margin-top: 10px;" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>
