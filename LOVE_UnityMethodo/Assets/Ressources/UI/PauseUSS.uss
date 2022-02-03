@@ -1,0 +1,24 @@
+#Resume{
+	background-image: url("/Assets/Sprites/UI/Continue_UN.png");
+}
+
+#Resume:hover{
+	background-image: url("/Assets/Sprites/UI/Continue_S.png");
+}
+
+#Resume:focus{
+	background-image: url("/Assets/Sprites/UI/Continue_S.png");
+}
+
+
+#Quit{
+	background-image: url("/Assets/Sprites/UI/Quit_UN.png");
+}
+
+#Quit:hover{
+	background-image: url("/Assets/Sprites/UI/Quit_S.png");
+}
+
+#Quit:focus{
+	background-image: url("/Assets/Sprites/UI/Quit_S.png");
+}

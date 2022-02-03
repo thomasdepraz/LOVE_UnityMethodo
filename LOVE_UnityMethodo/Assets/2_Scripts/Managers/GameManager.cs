@@ -6,6 +6,10 @@ using Player;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    public GameObject PauseMenu;
+    private bool isPaused = false;
+
     public void Awake()
     {
         Instance = this;
@@ -20,6 +24,17 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         currentLevel = levels[0];
         LoadLevel(currentLevel);
+    }
+
+    private void Update()
+    {
+
+        //Pause
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!isPaused) Pause();
+            else UnPause();
+        }
     }
 
     public void LoadLevel(Level level)
@@ -48,6 +63,18 @@ public class GameManager : MonoBehaviour
             return levels[index + 1];
         else
             return null;
+    }
+
+    public void Pause()
+    {
+        isPaused = true;
+        PauseMenu.SetActive(true);
+    }
+
+    public void UnPause()
+    {
+        isPaused = false;
+        PauseMenu.SetActive(false);
     }
 
 

@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="PauseUSS.uss" />
+    <ui:VisualElement style="align-items: center; justify-content: center; position: absolute; left: 0; top: 0; bottom: 0; right: 0;">
+        <ui:GroupBox style="height: 40%; margin-top: 130px; background-image: url(&apos;/Assets/Sprites/UI/MenuBorder.png#MenuBorder&apos;); border-left-width: 28px; border-right-width: 28px; border-top-width: 28px; border-bottom-width: 28px; margin-left: 158px; margin-right: 158px; margin-bottom: 130px; opacity: 1; width: 30%;">
+            <ui:Button display-tooltip-when-elided="true" name="Resume" style="margin-bottom: 20px; width: auto; max-width: none; opacity: 1; -unity-background-scale-mode: stretch-to-fill; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0);" />
+            <ui:Button display-tooltip-when-elided="true" name="Option" text="   OPTION" style="margin-bottom: 20px; -unity-font: url(&apos;/Assets/Ressources/Pixeled.ttf&apos;); -unity-text-align: middle-left; border-left-width: 1px; -unity-font-definition: url(&apos;/Assets/Ressources/Pixeled SDF 3.asset&apos;); font-size: 14px; background-color: rgb(0, 0, 0); border-left-color: rgba(55, 55, 55, 0); border-right-color: rgba(55, 55, 55, 0); border-top-color: rgba(55, 55, 55, 0); border-bottom-color: rgba(55, 55, 55, 0); margin-left: 3px; left: auto; flex-shrink: 0; flex-basis: 30px; -unity-background-scale-mode: stretch-to-fill; -unity-text-outline-color: rgb(255, 255, 255); height: 30px;" />
+            <ui:Button display-tooltip-when-elided="true" name="Quit" style="margin-bottom: 20px; bottom: 0; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0);" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>
