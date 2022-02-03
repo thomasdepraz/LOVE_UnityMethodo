@@ -32,7 +32,7 @@ public class Pause : MonoBehaviour
 
     public void Option()
     {
-        Debug.Log("option");
+        GameManager.Instance.Option();
     }
 
     public void Quit()

@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="OptionUSS.uss" />
+    <ui:VisualElement style="align-items: center; justify-content: center; position: absolute; left: 0; top: 0; bottom: 0; right: 0;">
+        <ui:GroupBox style="height: 40%; margin-top: 130px; background-image: url(&apos;/Assets/Sprites/UI/MenuBorder.png#MenuBorder&apos;); border-left-width: 28px; border-right-width: 28px; border-top-width: 28px; border-bottom-width: 28px; margin-left: 158px; margin-right: 158px; margin-bottom: 130px; opacity: 1; width: 30%;">
+            <ui:Slider picking-mode="Ignore" label="VOLUME" value="50" high-value="100" name="Volume" style="margin-top: 10px; margin-bottom: 10px; -unity-font-definition: url(&apos;/Assets/Ressources/Pixeled SDF 3.asset&apos;); font-size: 10px;" />
+            <ui:Button display-tooltip-when-elided="true" name="Return" text="RETURN" style="margin-bottom: 10px; bottom: 0; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); margin-top: 10px; -unity-font-definition: url(&apos;/Assets/Ressources/Pixeled SDF 3.asset&apos;);" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>
