@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player
@@ -17,6 +15,7 @@ namespace Player
         [Header("References")]
         public Transform self;
         public Raycaster2D raycaster;
+        public Checkpoint currentCheckpoint;
 
         [Header("Data")]
         public float speed;
@@ -31,6 +30,11 @@ namespace Player
         float fallingDuration;
         bool horizontalHit;
 
+
+        [Header("Feedbacks")]
+        public CheckpointBehaviour checkpointBehaviour;
+
+
         public void Start()
         {
             currentPlayerState = PlayerState.ON_GROUND;
@@ -40,17 +44,20 @@ namespace Player
         {
             HorizontalMovement();
             VerticalMovement();
-            if (currentPlayerState == PlayerState.ON_GROUND)
-                CheckFalling();
 
-            if(currentPlayerState == PlayerState.FALLING)
+            if (currentPlayerState == PlayerState.ON_GROUND)
+            {
+                CheckFalling();
+                PlaceCheckpoint();
+            }
+            if (currentPlayerState == PlayerState.FALLING)
             {
                 //Check void death
                 if (self.transform.position.y <= Setting.voidHeight)
                     Respawn();
             }
-        }   
 
+        }
         public void ApplyGravity()
         {
             fallingDuration += Time.deltaTime;
@@ -126,13 +133,27 @@ namespace Player
             currentPlayerState = PlayerState.FALLING;
         }
 
+        public void PlaceCheckpoint()
+        {
+            if(Input.GetKeyDown(KeyCode.C))
+            {
+                currentCheckpoint = new Checkpoint(self.position, checkpointBehaviour.gameObject);
+            }
+        }
+
         public void Respawn()
         {
-            self.position = GameManager.Instance.currentLevel.playerStart.localPosition;
+
+            if(currentCheckpoint != null)
+            {
+                self.position = currentCheckpoint.position;
+            }
+            else
+            {
+                self.position = GameManager.Instance.currentLevel.playerStart.localPosition;
+            }
 
             //lower life points if == 0 then loose
         }
-
-
     }
 }
