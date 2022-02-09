@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public PlayerController player;
     public List<Level> levels;
     [HideInInspector]public Level currentLevel;
+    public int currentLevelCount = 0;
 
     public IEnumerator Start()
     {
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevel(Level level)
     {
+        
         if (currentLevel != null)
             currentLevel.levelContainer.SetActive(false);
 
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviour
             currentLevel = level;
             level.levelContainer.SetActive(true);
             player.Spawn();
+            currentLevelCount++;
         }
         else
         {
@@ -64,7 +67,12 @@ public class GameManager : MonoBehaviour
     public void LoadLevel()
     {
         //WIN
-        SceneManager.LoadScene(0);
+        //Calculate score 
+        int score = currentLevelCount * 50 + (player.numberOfCheckpoint * (-5)) + (player.numberOfDeath * (-10));
+
+        //Appear score UI
+        uiHandler.AppearScoreScreen(score, "You lost !");
+        //SceneManager.LoadScene(0);
     }
 
     public Level NextLevel()
