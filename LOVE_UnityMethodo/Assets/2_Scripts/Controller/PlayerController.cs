@@ -49,6 +49,7 @@ namespace Player
 
         [Header("Feedbacks")]
         public CheckpointBehaviour checkpointBehaviour;
+        public PlayerFX playerFXScript;
 
 
         [Header("Animation")]
@@ -61,6 +62,7 @@ namespace Player
             currentPlayerState = PlayerState.ON_GROUND;
             playerAnimator = GetComponent<Animator>();
             sr = GetComponent<SpriteRenderer>();
+            playerFXScript = GetComponent<PlayerFX>();
             originJumpForce = jumpForce;
         }
 

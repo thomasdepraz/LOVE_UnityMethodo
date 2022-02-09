@@ -2,9 +2,9 @@
     <Style src="OptionUSS.uss" />
     <ui:VisualElement style="align-items: center; justify-content: center; position: absolute; left: 0; top: -1px; bottom: 2px; right: 0;">
         <ui:GroupBox style="height: 40%; margin-top: 130px; background-image: url(&apos;/Assets/Sprites/UI/MenuBorder.png#MenuBorder&apos;); border-left-width: 28px; border-right-width: 28px; border-top-width: 28px; border-bottom-width: 28px; margin-left: 158px; margin-right: 158px; margin-bottom: 130px; opacity: 1; width: 30%;">
-            <ui:Slider picking-mode="Ignore" label="VOLUME" value="50" high-value="100" name="Volume" style="margin-top: 5px; margin-bottom: 5px; -unity-font-definition: url(&apos;/Assets/Ressources/Pixeled SDF 3.asset&apos;); font-size: 10px;" />
-            <ui:DropdownField label="Resolution" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="Resolution" style="margin-bottom: 2px; margin-top: 2px; margin-left: 3px; margin-right: 2px; width: auto; max-width: none;" />
-            <ui:Button display-tooltip-when-elided="true" name="Return" text="RETURN" style="margin-bottom: 5px; bottom: 0; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); margin-top: 5px; -unity-font-definition: url(&apos;/Assets/Ressources/Pixeled SDF 3.asset&apos;);" />
+            <ui:Slider picking-mode="Ignore" label="VOLUME" value="50" high-value="100" name="Volume" style="margin-top: 5px; margin-bottom: 5px; -unity-font-definition: url(&apos;/Assets/Ressources/Pixeled SDF 3.asset&apos;); font-size: 10px; color: rgb(255, 255, 255);" />
+            <ui:DropdownField label="Resolution" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="Resolution" style="margin-bottom: 2px; margin-top: 2px; margin-left: 3px; margin-right: 2px; width: auto; max-width: none; color: rgb(255, 255, 255); -unity-font-definition: url(&apos;/Assets/Ressources/Pixeled SDF 3.asset&apos;); font-size: 10px;" />
+            <ui:Button display-tooltip-when-elided="true" name="Return" text="RETURN" style="margin-bottom: 5px; bottom: 0; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); margin-top: 5px; -unity-font-definition: url(&apos;/Assets/Ressources/Pixeled SDF 3.asset&apos;); color: rgb(255, 255, 255);" />
         </ui:GroupBox>
     </ui:VisualElement>
 </ui:UXML>

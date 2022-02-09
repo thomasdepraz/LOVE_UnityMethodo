@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
@@ -38,7 +39,8 @@ public class Pause : MonoBehaviour
 
     public void Quit()
     {
-        Application.Quit();
-        Debug.Log("quit");
+        SceneManager.LoadScene("HighScore");
+        //Application.Quit();
+        Debug.Log("return to menu");
     }
 }
