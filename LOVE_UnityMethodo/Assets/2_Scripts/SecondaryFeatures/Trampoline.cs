@@ -10,7 +10,8 @@ public class Trampoline : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            GameManager.Instance.player.VerticalMovement(true, jumpForceFactor);
+            if(!GameManager.Instance.player.isInHelicopterMode)   
+                GameManager.Instance.player.VerticalMovement(true, jumpForceFactor);
         }
     }
 }
