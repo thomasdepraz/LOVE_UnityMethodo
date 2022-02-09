@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Player;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,20 +45,26 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevel(Level level)
     {
-        
+        if (currentLevel != null)
+            currentLevel.levelContainer.SetActive(false);
+
         if(level!=null)
         {
             //LOAD
             currentLevel = level;
             level.levelContainer.SetActive(true);
             player.Spawn();
-
         }
         else
         {
-             //WIN
-
+            LoadLevel();
         }
+    }
+
+    public void LoadLevel()
+    {
+        //WIN
+        SceneManager.LoadScene(0);
     }
 
     public Level NextLevel()

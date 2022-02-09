@@ -39,6 +39,26 @@ namespace Player
         public AnimationCurve fallingAccelerationCurve;
 
         [HideInInspector] public PlayerState currentPlayerState;
+
+        private bool _isInHelicopterMode;
+        public bool isInHelicopterMode 
+        {
+            get => _isInHelicopterMode;
+            set
+            {
+                _isInHelicopterMode = value;
+                if (value)
+                {
+                    sr.color = Color.red;
+                    Setting.gravityForce *= 2;
+                }
+                else
+                {
+                    sr.color = Color.white;
+                    Setting.gravityForce *= 0.5f;
+                }
+            }
+        }
         float inputDirection;
         float currentJumpDuration;
         float fallingDuration;
@@ -76,7 +96,6 @@ namespace Player
 
             if (currentPlayerState == PlayerState.ON_GROUND)
             {
-                CheckFalling();
                 PlaceCheckpoint();
             }
             if (currentPlayerState == PlayerState.FALLING)
@@ -87,6 +106,14 @@ namespace Player
             }
 
         }
+        public void FixedUpdate()
+        {
+            if (currentPlayerState == PlayerState.ON_GROUND)
+            {
+                CheckFalling();
+            }
+        }
+
         public void ApplyGravity()
         {
             fallingDuration += Time.deltaTime;
@@ -126,6 +153,7 @@ namespace Player
                 
         }
 
+        bool raycastUp;
         public void VerticalMovement(bool forceJump = false, float jumpForceFactor = 1)
         {
             if(Input.GetKeyDown(KeyCode.Space) || forceJump)
@@ -136,7 +164,7 @@ namespace Player
                    if(jumpForce == originJumpForce) jumpForce *= jumpForceFactor;
                 }
 
-                if(currentPlayerState == PlayerState.ON_GROUND || forceJump)
+                if(currentPlayerState == PlayerState.ON_GROUND || forceJump || isInHelicopterMode)
                 {
                     currentJumpDuration = 0;
                     currentPlayerState = PlayerState.JUMPING;
@@ -154,9 +182,13 @@ namespace Player
             if(currentPlayerState == PlayerState.JUMPING)
             {
                 currentJumpDuration += Time.deltaTime;
+                raycastUp = raycaster.ThrowRays(RayDirection.Up);
 
-                if (currentJumpDuration >= maxJumpDuration || raycaster.ThrowRays(RayDirection.Up))
+                if (currentJumpDuration >= maxJumpDuration || raycastUp)
                 {
+                    if (raycastUp && isInHelicopterMode)
+                        isInHelicopterMode = false;
+
                     fallingDuration = 0;
                     currentPlayerState = PlayerState.FALLING;
                 } 
@@ -207,6 +239,8 @@ namespace Player
         public void Respawn()
         {
             LifeCount--;
+            if (isInHelicopterMode) isInHelicopterMode = false;
+
             if(LifeCount > 0)
             {
                 if(currentCheckpoint != null)
@@ -228,6 +262,12 @@ namespace Player
             }
 
             //lower life points if == 0 then loose
+        }
+
+        public void OnBecameInvisible()
+        {
+            if (isInHelicopterMode)
+                isInHelicopterMode = false;
         }
     }
 }
