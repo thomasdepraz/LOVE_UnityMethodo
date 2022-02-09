@@ -33,6 +33,12 @@ public class GameManager : MonoBehaviour
         LoadLevel(currentLevel);
     }
 
+    public void DeactivateGame()
+    {
+        player.gameObject.SetActive(false);
+        currentLevel.levelContainer.SetActive(false);
+    }
+
     private void Update()
     {
 
@@ -67,6 +73,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevel()
     {
+        Instance.DeactivateGame();
+
         //WIN
         //Calculate score 
         int score = currentLevelCount * 50 + (player.numberOfCheckpoint * (-5)) + (player.numberOfDeath * (-10));

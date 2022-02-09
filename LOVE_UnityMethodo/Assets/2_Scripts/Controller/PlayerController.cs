@@ -271,6 +271,8 @@ namespace Player
             }
             else
             {
+                GameManager.Instance.DeactivateGame();
+
                 //Calculate score 
                 int score = GameManager.Instance.currentLevelCount * 50 + (numberOfCheckpoint * (-5)) + (numberOfDeath * (-10));
 
