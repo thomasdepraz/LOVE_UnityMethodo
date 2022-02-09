@@ -212,10 +212,12 @@ namespace Player
                 if(currentCheckpoint != null)
                 {
                     self.position = currentCheckpoint.position;
+                    playerFXScript.PlayerSpaws();
                 }
                 else
                 {
                     self.position = GameManager.Instance.currentLevel.playerStart.localPosition;
+                    playerFXScript.PlayerSpaws();
                 }
             }
             else

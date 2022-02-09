@@ -6,8 +6,8 @@ using Player;
 public class PlayerFX : MonoBehaviour
 {
 
-    public PlayerController pc;
-    public ParticleSystem ps;
+    private PlayerController pc;
+    private ParticleSystem ps;
 
     //private bool isPlayingPS = false;
     //public bool fxDuration = 

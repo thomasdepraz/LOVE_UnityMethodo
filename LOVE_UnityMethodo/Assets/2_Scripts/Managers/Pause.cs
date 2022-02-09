@@ -39,7 +39,7 @@ public class Pause : MonoBehaviour
 
     public void Quit()
     {
-        SceneManager.LoadScene("HighScore");
+        SceneManager.LoadScene("StartScene");
         //Application.Quit();
         Debug.Log("return to menu");
     }
