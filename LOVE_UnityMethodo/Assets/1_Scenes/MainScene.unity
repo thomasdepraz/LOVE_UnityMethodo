@@ -3669,10 +3669,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1045133207}
     - target: {fileID: 1202126906113249413, guid: 481c6e394f75b344a9fe135c5c2ba194, type: 3}
-      propertyPath: OptionMenu
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1202126906113249413, guid: 481c6e394f75b344a9fe135c5c2ba194, type: 3}
       propertyPath: levels.Array.data[0].playerStart
       value: 
       objectReference: {fileID: 2131278858}

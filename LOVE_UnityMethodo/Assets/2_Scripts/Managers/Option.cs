@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 public class Option : MonoBehaviour
 {
     private UIDocument m_UIDocument;
+
+    private DropdownField resolution;
 
     private void Awake()
     {
@@ -25,7 +27,20 @@ public class Option : MonoBehaviour
 
         Button returnButton = root.Q<Button>("Return");
         returnButton.clicked += ReturnToPause;
+
+        resolution = root.Q<DropdownField>("Resolution");
+        List<string> resolutionList = new List<string>();
+        resolutionList.Add("1920 - 1080");
+        resolutionList.Add("1280 - 720");
+        resolution.choices = resolutionList;
+        //resolution.index += ChangeResolution;
+        resolution.RegisterValueChangedCallback<string>(ChangeResolution);
     }
+
+    /*private void Update()
+    {
+        if ()
+    }*/
 
     public void Volume()
     {
@@ -34,6 +49,25 @@ public class Option : MonoBehaviour
 
     public void ReturnToPause()
     {
+        Debug.Log("return to pause");
         GameManager.Instance.Pause();
+    }
+
+    public void ChangeResolution(ChangeEvent<string> evt)
+    {
+        Debug.Log("change resolution to :");
+        //Camera cam = Camera.current;
+        switch (resolution.index)
+        {
+            case 0:
+                Screen.SetResolution(1920, 1080, true);
+                Debug.Log("1920, 1080");
+                break;
+            case 1:
+                Screen.SetResolution(1280, 720, true);
+                Debug.Log("1080, 720");
+                break;
+        }
+        
     }
 }
