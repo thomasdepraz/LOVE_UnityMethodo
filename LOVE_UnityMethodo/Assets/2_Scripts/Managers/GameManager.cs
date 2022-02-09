@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public bool isPaused = false;
 
     //SOUND
-    public float volume = 100;
+    public float volume = 1;
 
     public void Awake()
     {
@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
             level.levelContainer.SetActive(true);
             player.Spawn();
             currentLevelCount++;
+            if(player.currentCheckpoint != null) player.currentCheckpoint.DestroyCheckPoint();
         }
         else
         {

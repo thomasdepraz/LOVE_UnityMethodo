@@ -108,8 +108,7 @@ namespace Player
                 //Check void death
                 if (self.transform.position.y <= Setting.voidHeight)
                 {
-                    playerFXScript.PlayerDies();
-                    playerSoundScript.PlayerDies();
+
                     Respawn();
                 }
             }
@@ -257,11 +256,15 @@ namespace Player
             {
                 if(currentCheckpoint != null)
                 {
+                    playerFXScript.PlayerDies();
+                    playerSoundScript.PlayerDies();
                     self.position = currentCheckpoint.position;
                     playerFXScript.PlayerSpawns();
                 }
                 else
                 {
+                    playerFXScript.PlayerDies();
+                    playerSoundScript.PlayerDies();
                     self.position = GameManager.Instance.currentLevel.playerStart.localPosition;
                     playerFXScript.PlayerSpawns();
                 }
