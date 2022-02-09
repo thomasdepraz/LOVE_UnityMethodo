@@ -17,20 +17,37 @@ public class DangerousCollider : MonoBehaviour
     {
         if(rend.enabled)
         {
-            if(collision.tag == "Checkpoint")
+            if (!isProjectile)//manage none projectile collision
             {
-                GameManager.Instance.player.currentCheckpoint.DestroyCheckPoint();
-                Debug.Log("hit checkpoint");
+                if (collision.tag == "Checkpoint")
+                {
+                    GameManager.Instance.player.currentCheckpoint.DestroyCheckPoint();
+                }
+                else if(collision.tag == "Player")
+                {
+                    GameManager.Instance.player.Respawn();
+                }
             }
-            else if(collision.tag == "Player")
+            else //manage projectile collision
             {
-                GameManager.Instance.player.Respawn();
-                Debug.Log("hit player");
+                if (collision.tag == "Checkpoint")
+                {
+                    GameManager.Instance.player.currentCheckpoint.DestroyCheckPoint();
+                    rend.enabled = false;
+                }
+                else if (collision.tag == "Player")
+                {
+                    GameManager.Instance.player.Respawn();
+                    rend.enabled = false;
+                }
+                else if (collision.tag == "Terrain")
+                {
+                    rend.enabled = false;
+                }
+
             }
-            else if(isProjectile)
-            {
-                gameObject.SetActive(false);
-            }
+            
+            
         }
     }
 

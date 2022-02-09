@@ -29,6 +29,8 @@ namespace Player
         float currentJumpDuration;
         float fallingDuration;
         bool horizontalHit;
+        bool isInForcedJump;
+        private float originJumpForce;
 
 
         [Header("Feedbacks")]
@@ -44,6 +46,7 @@ namespace Player
             currentPlayerState = PlayerState.ON_GROUND;
             playerAnimator = GetComponent<Animator>();
             sr = GetComponent<SpriteRenderer>();
+            originJumpForce = jumpForce;
         }
 
         public void Update()
@@ -99,17 +102,23 @@ namespace Player
                 
         }
 
-        public void VerticalMovement()
+        public void VerticalMovement(bool forceJump = false, float jumpForceFactor = 1)
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.Space) || forceJump)
             {
-                if(currentPlayerState == PlayerState.ON_GROUND)
+                if(forceJump)
+                {
+                   isInForcedJump = true;
+                   if(jumpForce == originJumpForce) jumpForce *= jumpForceFactor;
+                }
+
+                if(currentPlayerState == PlayerState.ON_GROUND || forceJump)
                 {
                     currentJumpDuration = 0;
                     currentPlayerState = PlayerState.JUMPING;
                 }
             }
-            if(Input.GetKeyUp(KeyCode.Space))
+            if(Input.GetKeyUp(KeyCode.Space) && !isInForcedJump)
             {
                 if (currentPlayerState == PlayerState.JUMPING)
                 {
@@ -129,7 +138,7 @@ namespace Player
                 } 
                 else
                 {
-                    self.transform.position += Vector3.up * jumpForce * jumpAccelerationCurve.Evaluate(currentJumpDuration/maxJumpDuration) * Time.deltaTime ;
+                    self.transform.position += Vector3.up * jumpForce * jumpForceFactor * jumpAccelerationCurve.Evaluate(currentJumpDuration/maxJumpDuration) * Time.deltaTime ;
                 }
             }
             else if(currentPlayerState == PlayerState.FALLING)
@@ -137,9 +146,15 @@ namespace Player
                 ApplyGravity();
 
                 //If collision ground change playerstate
-                if(raycaster.ThrowRays(RayDirection.Down))
+                if (raycaster.ThrowRays(RayDirection.Down))
                 {
-                    currentPlayerState = PlayerState.ON_GROUND; 
+                    currentPlayerState = PlayerState.ON_GROUND;
+
+                    if (isInForcedJump)
+                    {
+                        isInForcedJump = false;
+                        jumpForce = originJumpForce;
+                    }
                 }
             }
         }

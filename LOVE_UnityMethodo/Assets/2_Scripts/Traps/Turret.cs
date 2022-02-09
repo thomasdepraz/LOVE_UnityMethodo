@@ -7,7 +7,7 @@ public class Turret : MonoBehaviour
     public float angleFromCenter;
     public float rotateSpeed;
     public float cooldown;
-    public List<GameObject> projectiles = new List<GameObject>();
+    public List<Projectile> projectiles = new List<Projectile>();
     private Vector3 originEulerAngle;
     private Coroutine cooldownRoutine;
 
@@ -21,6 +21,7 @@ public class Turret : MonoBehaviour
 
     private void OnBecameInvisible()
     {
+        transform.rotation = Quaternion.Euler(originEulerAngle) ;
         LeanTween.cancel(gameObject);
         StopCoroutine(cooldownRoutine);
     }
@@ -33,28 +34,28 @@ public class Turret : MonoBehaviour
     public Vector3 GetPanTarget()
     {
         Vector3 currentEuler = transform.rotation.eulerAngles;
-        if (currentEuler == originEulerAngle) return new Vector3(0, 0, originEulerAngle.z + angleFromCenter);
-        else if (currentEuler.z == originEulerAngle.z + angleFromCenter) return new Vector3(0, 0, originEulerAngle.z - angleFromCenter);
-        else if (currentEuler.z == originEulerAngle.z - angleFromCenter) return new Vector3(0, 0, originEulerAngle.z + angleFromCenter);
+        if (currentEuler == originEulerAngle) 
+            return new Vector3(0, 0, originEulerAngle.z + angleFromCenter);
 
-        return Vector3.zero;
+        return originEulerAngle;
     }
 
     public void Shoot()
     {
-        GameObject projectile = GetProjectile();
+        Projectile projectile = GetProjectile();
         if(projectile!=null)
         {
-            projectile.SetActive(true);
-
+            projectile.self.position = projectile.originPosition;
+            projectile.direction = transform.up;
+            projectile.rend.enabled = true;
         }
     }
 
-    GameObject GetProjectile()
+    Projectile GetProjectile()
     {
         for (int i = 0; i < projectiles.Count; i++)
         {
-            if (!projectiles[i].activeSelf) return projectiles[i];
+            if (!projectiles[i].rend.enabled) return projectiles[i];
         }
         return null;
     }
