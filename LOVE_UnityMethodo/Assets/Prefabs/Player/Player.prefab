@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   self: {fileID: 2811830033690170832}
   raycaster: {fileID: 2811830033690170847}
+  maxLifeCount: 10
   speed: 5
   jumpForce: 7
   maxJumpDuration: 0.3
