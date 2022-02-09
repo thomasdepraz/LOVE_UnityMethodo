@@ -77,6 +77,9 @@ namespace Player
         public Animator playerAnimator;
         public SpriteRenderer sr;
 
+        public int numberOfCheckpoint;
+        public int numberOfDeath;
+
         public void Start()
         {
             LifeCount = maxLifeCount;
@@ -238,6 +241,7 @@ namespace Player
         {
             if(Input.GetKeyDown(KeyCode.C))
             {
+                numberOfCheckpoint++;
                 currentCheckpoint = new Checkpoint(self.position, checkpointBehaviour.gameObject);
                 playerFXScript.PlayerSetNewSpawn();
             }
@@ -245,6 +249,7 @@ namespace Player
 
         public void Respawn()
         {
+            numberOfDeath++;
             LifeCount--;
             if (isInHelicopterMode) isInHelicopterMode = false;
 
@@ -264,8 +269,10 @@ namespace Player
             else
             {
                 //Calculate score 
+                int score = GameManager.Instance.currentLevelCount * 50 + (numberOfCheckpoint * (-5)) + (numberOfDeath * (-10));
 
                 //Appear score UI
+                GameManager.Instance.uiHandler.AppearScoreScreen(score, "You lost !");
             }
 
             //lower life points if == 0 then loose
