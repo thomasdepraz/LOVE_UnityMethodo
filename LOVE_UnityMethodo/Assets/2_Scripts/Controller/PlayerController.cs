@@ -48,8 +48,11 @@ namespace Player
 
         public void Update()
         {
-            HorizontalMovement();
-            VerticalMovement();
+            if (!GameManager.Instance.isPaused)
+            {
+                HorizontalMovement();
+                VerticalMovement();
+            }
 
             if (currentPlayerState == PlayerState.ON_GROUND)
             {
@@ -73,21 +76,19 @@ namespace Player
         public void HorizontalMovement()
         {
             inputDirection = Input.GetAxisRaw("Horizontal");
-            if (inputDirection > 0)
+            if (inputDirection > 0.3)
             {
                 horizontalHit = raycaster.ThrowRays(RayDirection.Right);
                 sr.flipX = true;
+
+                //anim walk
+                playerAnimator.SetBool("isWalking", true);
             }
-            else if (inputDirection < 0)
+            else if (inputDirection < -0.3)
             {
                 horizontalHit = raycaster.ThrowRays(RayDirection.Left);
                 sr.flipX = false;
-            }
-            else horizontalHit = false;
 
-            if(!horizontalHit)
-            {
-                self.position += Vector3.right * inputDirection * speed * Time.deltaTime;
                 //anim walk
                 playerAnimator.SetBool("isWalking", true);
             }
@@ -95,6 +96,12 @@ namespace Player
             {
                 //anim idle
                 playerAnimator.SetBool("isWalking", false);
+                horizontalHit = false;
+            }
+
+            if(!horizontalHit)
+            {
+                self.position += Vector3.right * inputDirection * speed * Time.deltaTime;
             }
                 
         }

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject PauseMenu;
     public GameObject OptionMenu;
-    private bool isPaused = false;
+    public bool isPaused = false;
 
     //SOUND
     public float volume = 100;
@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
 
     public void Option()
     {
+        PauseMenu.SetActive(false);
         OptionMenu.SetActive(true);
     }
 
