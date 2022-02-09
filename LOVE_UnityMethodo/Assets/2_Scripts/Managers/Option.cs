@@ -37,11 +37,6 @@ public class Option : MonoBehaviour
         resolution.RegisterValueChangedCallback<string>(ChangeResolution);
     }
 
-    /*private void Update()
-    {
-        if ()
-    }*/
-
     public void Volume()
     {
         GameManager.Instance.UnPause();

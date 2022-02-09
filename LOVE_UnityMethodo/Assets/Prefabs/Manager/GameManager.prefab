@@ -47,7 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 3135294165017127656}
   OptionMenu: {fileID: 2947727984333122856}
+  isPaused: 0
   volume: 100
+  uiHandler: {fileID: 0}
   player: {fileID: 0}
   levels:
   - playerStart: {fileID: 0}
@@ -65,6 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 409088282455872471}
   - component: {fileID: 8573368435623806193}
+  - component: {fileID: 4089320960057129773}
   m_Layer: 5
   m_Name: OptionMenu
   m_TagString: Untagged
@@ -102,6 +105,18 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 96f245da40741a444b0f2d3c30f5fe85, type: 3}
   m_SortingOrder: 0
+--- !u!114 &4089320960057129773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2947727984333122856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589e0b23e1d719d41a71b4049553c920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3135294165017127656
 GameObject:
   m_ObjectHideFlags: 0
