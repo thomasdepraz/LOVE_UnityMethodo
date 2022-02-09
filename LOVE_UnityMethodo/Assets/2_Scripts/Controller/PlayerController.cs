@@ -50,6 +50,7 @@ namespace Player
         [Header("Feedbacks")]
         public CheckpointBehaviour checkpointBehaviour;
         public PlayerFX playerFXScript;
+        public PlayerSound playerSoundScript;
 
 
         [Header("Animation")]
@@ -63,6 +64,7 @@ namespace Player
             playerAnimator = GetComponent<Animator>();
             sr = GetComponent<SpriteRenderer>();
             playerFXScript = GetComponent<PlayerFX>();
+            playerSoundScript = GetComponent<PlayerSound>();
             originJumpForce = jumpForce;
         }
 
@@ -83,7 +85,11 @@ namespace Player
             {
                 //Check void death
                 if (self.transform.position.y <= Setting.voidHeight)
+                {
+                    playerFXScript.PlayerDies();
+                    playerSoundScript.PlayerDies();
                     Respawn();
+                }
             }
 
         }
@@ -201,6 +207,7 @@ namespace Player
             if(Input.GetKeyDown(KeyCode.C))
             {
                 currentCheckpoint = new Checkpoint(self.position, checkpointBehaviour.gameObject);
+                playerFXScript.PlayerSetNewSpawn();
             }
         }
 
@@ -212,12 +219,12 @@ namespace Player
                 if(currentCheckpoint != null)
                 {
                     self.position = currentCheckpoint.position;
-                    playerFXScript.PlayerSpaws();
+                    playerFXScript.PlayerSpawns();
                 }
                 else
                 {
                     self.position = GameManager.Instance.currentLevel.playerStart.localPosition;
-                    playerFXScript.PlayerSpaws();
+                    playerFXScript.PlayerSpawns();
                 }
             }
             else

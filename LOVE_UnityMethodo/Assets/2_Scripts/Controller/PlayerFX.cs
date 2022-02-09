@@ -20,19 +20,28 @@ public class PlayerFX : MonoBehaviour
 
     public void PlayerDies()
     {
-        ps.startColor = Color.yellow;
-        ps.Play();
+        Debug.Log("player dies");
+        ps.startColor = Color.red;
+        ps.Emit(20);
         //Destroy(gameObject, ps.main.duration);
     }
 
-    public void PlayerSpaws()
+    public void PlayerSetNewSpawn()
     {
-        ps.Play();
+        Debug.Log("new spawn");
+        ps.startColor = Color.yellow;
+        ps.Emit(20);
+    }
+
+    public void PlayerSpawns()
+    {
+        Debug.Log("player spawn");
+        ps.startColor = Color.white;
+        ps.Emit(20);
     }
 
     public void DisableAllFX()
     {
-        ps.startColor = Color.red;
         ps.Stop();
     }
 
