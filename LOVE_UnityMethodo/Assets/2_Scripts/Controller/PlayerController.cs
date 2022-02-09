@@ -18,6 +18,20 @@ namespace Player
         public Checkpoint currentCheckpoint;
 
         [Header("Data")]
+        public int maxLifeCount;
+        private int _lifeCount;
+        public int LifeCount
+        {
+            get
+            {
+                return _lifeCount;
+            }
+            set
+            {
+                _lifeCount = value;
+                GameManager.Instance.uiHandler.UpdateLifeCount(_lifeCount, maxLifeCount);
+            }
+        }
         public float speed;
         public float jumpForce;
         public float maxJumpDuration;
@@ -43,6 +57,7 @@ namespace Player
 
         public void Start()
         {
+            LifeCount = maxLifeCount;
             currentPlayerState = PlayerState.ON_GROUND;
             playerAnimator = GetComponent<Animator>();
             sr = GetComponent<SpriteRenderer>();
@@ -189,14 +204,23 @@ namespace Player
 
         public void Respawn()
         {
-
-            if(currentCheckpoint != null)
+            LifeCount--;
+            if(LifeCount > 0)
             {
-                self.position = currentCheckpoint.position;
+                if(currentCheckpoint != null)
+                {
+                    self.position = currentCheckpoint.position;
+                }
+                else
+                {
+                    self.position = GameManager.Instance.currentLevel.playerStart.localPosition;
+                }
             }
             else
             {
-                self.position = GameManager.Instance.currentLevel.playerStart.localPosition;
+                //Calculate score 
+
+                //Appear score UI
             }
 
             //lower life points if == 0 then loose

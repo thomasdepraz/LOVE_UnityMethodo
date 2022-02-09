@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    public UIHandler uiHandler;
     public PlayerController player;
     public List<Level> levels;
     [HideInInspector]public Level currentLevel;
