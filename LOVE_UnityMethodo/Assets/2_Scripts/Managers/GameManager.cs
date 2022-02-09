@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public bool isPaused = false;
 
     //SOUND
-    public float volume = 1;
+    public float volume = 50;
 
     public void Awake()
     {
