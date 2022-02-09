@@ -8,6 +8,8 @@ public class Option : MonoBehaviour
     private UIDocument m_UIDocument;
 
     private DropdownField resolution;
+    private Toggle fullScreen;
+    bool isFullScreen = true;
 
     private void Awake()
     {
@@ -27,6 +29,9 @@ public class Option : MonoBehaviour
 
         Button returnButton = root.Q<Button>("Return");
         returnButton.clicked += ReturnToPause;
+
+        fullScreen = root.Q<Toggle>("FullScreen");
+        fullScreen.RegisterValueChangedCallback<bool>(SetResolution);
 
         resolution = root.Q<DropdownField>("Resolution");
         List<string> resolutionList = new List<string>();
@@ -48,6 +53,11 @@ public class Option : MonoBehaviour
         GameManager.Instance.Pause();
     }
 
+    public void SetResolution(ChangeEvent<bool> evt)
+    {
+        isFullScreen = fullScreen.value;
+    }
+
     public void ChangeResolution(ChangeEvent<string> evt)
     {
         Debug.Log("change resolution to :");
@@ -55,11 +65,11 @@ public class Option : MonoBehaviour
         switch (resolution.index)
         {
             case 0:
-                Screen.SetResolution(1920, 1080, true);
+                Screen.SetResolution(1920, 1080, isFullScreen);
                 Debug.Log("1920, 1080");
                 break;
             case 1:
-                Screen.SetResolution(1280, 720, true);
+                Screen.SetResolution(1280, 720, isFullScreen);
                 Debug.Log("1080, 720");
                 break;
         }
