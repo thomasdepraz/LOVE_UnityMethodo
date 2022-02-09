@@ -17,11 +17,13 @@ public class PlayerSound : MonoBehaviour
 
     public void PlayerJump()
     {
+        audioSource.volume = GameManager.Instance.volume / 100;
         audioSource.PlayOneShot(jumpSound);
     }
 
     public void PlayerDies()
     {
+        audioSource.volume = GameManager.Instance.volume / 100;
         audioSource.PlayOneShot(deathSound);
     }
 
